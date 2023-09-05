@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { LoginView } from "../login-view/login-view";
 
-export const MainView = () => {
+export const MainView = () => {  
+  const [selectedMovie, setSelectedMovie] = useState(null); 
+  const [user, setUser] = useState(null);
   /* call useState function. Creating a state variable, movies */
   const [movies, setMovies] = useState([
     // {
@@ -54,12 +57,15 @@ export const MainView = () => {
       });
   }, []);
 
-  const [selectedMovie, setSelectedMovie] = useState(null);  
+   if (!user) {
+    return <LoginView onLoggedIn={(user) => setUser(user)} />;
+   }
 
   if (selectedMovie) {
     const similarMovies = movies.filter((movie) => movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id);
     return (
       <div>
+        <button onClick={() => { setUser(null); }}>Logout</button>
         <MovieView movie={selectedMovie} onBackClick={() => { setSelectedMovie(null); }} />
         <hr />
         <h2>Similar Movies</h2>
@@ -79,10 +85,16 @@ export const MainView = () => {
   }
 
   if (movies.length === 0) {
-    return <div>The list is empty!</div>;
+    return (
+      <>
+        <button onClick={() => { setUser(null); }}>Logout</button>
+        <div>The list is empty!</div>
+      </>
+    );
   } else {
     return (
       <div>
+        <button onClick={() => { setUser(null); }}>Logout</button>
         <h3>Movie list: </h3>        
         <small>click on!</small>
         <p>
