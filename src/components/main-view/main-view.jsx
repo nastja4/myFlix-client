@@ -69,19 +69,19 @@ export const MainView = () => {
 
 
   if (selectedMovie) {
-    // const similarMovies = movies.filter((movie) => movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id);
+    const similarMovies = movies.filter((movie) => movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id);
     return (
       <div>
         <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
         <MovieView movie={selectedMovie} onBackClick={() => { setSelectedMovie(null); }} />
-        {/* <hr />
+        <hr />
         <h2>Similar Movies</h2>
         {similarMovies.map((movie) => (
           <div key={movie._id}>
             <img src={movie.ImagePath} alt={movie.Title} style={{ width: "15%", height: "15%" }} />            
             <h3 onClick={() => setSelectedMovie(movie)}>{movie.Title}</h3>           
           </div>
-        ))}         */}
+        ))}        
       </div>
     );
   }
