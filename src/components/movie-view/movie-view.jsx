@@ -1,25 +1,29 @@
+import "./movie-view.scss";
+
 export const MovieView = ({ movie, onBackClick }) => {
   return (
     <div>
       <h1>{movie.Title}</h1>
-      <img src={movie.ImagePath} alt={movie.Title} style={{ width: "30%", height: "auto" }} />
-      <h3>{movie.Description}</h3>
+      <img className="w-100" src={movie.ImagePath} alt={movie.Title} />
+      <p><strong>{movie.Description}</strong></p>
       <div>
-        <h4>Genre:</h4>
+        <h5>Genre:</h5>
         <p>{movie.Genre.Name}</p>
-        <p>Description: {movie.Genre.Description}</p>
+        <p>Description: <br/>{movie.Genre.Description}</p>
       </div>
       <div>
-        <h4>Director:</h4>
+        <h5>Director:</h5>
         <p>{movie.Director.Name}</p>
-        <p>Bio: {movie.Director.Bio}</p>
+        <p>Bio: <br/>{movie.Director.Bio}</p>
         <p>Birth year: {movie.Director ? movie.Director.Birth || 'Birth Year Not Available' : 'Birth Year Not Available'}</p>
         <p>Death year: {movie.Director.Death}</p>
         {/* <p>Featured: {movie.featured ? 'Yes' : 'No'}</p> */}
       </div>
       
       
-      <button onClick={onBackClick}>Back to the movie list</button>
+      <button onClick={onBackClick} className="back-button" style={{ cursor: "pointer" }}>
+        Back to the movie list
+      </button>
     </div>
   );
 };
