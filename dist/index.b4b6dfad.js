@@ -27172,45 +27172,6 @@ var _react = require("react");
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
 var _loginView = require("../login-view/login-view");
-<<<<<<< HEAD
-var _s = $RefreshSig$();
-const MainView = ()=>{
-    _s();
-    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    const [user, setUser] = (0, _react.useState)(null);
-    /* call useState function. Creating a state variable, movies */ const [movies, setMovies] = (0, _react.useState)([]);
-    (0, _react.useEffect)(()=>{
-        fetch("https://movies-my-flix-307c49ee24e7.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
-            const moviesFromApi = data.map((movie)=>{
-                return {
-                    _id: movie._id,
-                    Title: movie.Title,
-                    Description: movie.Description,
-                    ImagePath: movie.ImagePath,
-                    Featured: movie.Featured,
-                    Genre: {
-                        Name: movie.Genre.Name,
-                        Description: movie.Genre.Description
-                    },
-                    Director: {
-                        Name: movie.Director.Name,
-                        Bio: movie.Director.Bio,
-                        Birth: movie.Director.Birth,
-                        Death: movie.Director.Death
-                    }
-                };
-            });
-            setMovies(moviesFromApi);
-        });
-    }, []);
-    if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
-        onLoggedIn: (user)=>setUser(user)
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 61,
-        columnNumber: 12
-    }, undefined);
-=======
 var _signupView = require("../signup-view/signup-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
@@ -27277,7 +27238,6 @@ const MainView = ()=>{
             }, undefined)
         ]
     }, void 0, true);
->>>>>>> main
     if (selectedMovie) {
         const similarMovies = movies.filter((movie)=>movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27285,20 +27245,13 @@ const MainView = ()=>{
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                     onClick: ()=>{
                         setUser(null);
-<<<<<<< HEAD
-=======
                         setToken(null);
                         localStorage.clear();
->>>>>>> main
                     },
                     children: "Logout"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                    lineNumber: 68,
-=======
                     lineNumber: 75,
->>>>>>> main
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
@@ -27308,31 +27261,19 @@ const MainView = ()=>{
                     }
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                    lineNumber: 69,
-=======
                     lineNumber: 76,
->>>>>>> main
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                    lineNumber: 70,
-=======
                     lineNumber: 77,
->>>>>>> main
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                     children: "Similar Movies"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                    lineNumber: 71,
-=======
                     lineNumber: 78,
->>>>>>> main
                     columnNumber: 9
                 }, undefined),
                 similarMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27346,11 +27287,7 @@ const MainView = ()=>{
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                                lineNumber: 74,
-=======
                                 lineNumber: 81,
->>>>>>> main
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
@@ -27358,31 +27295,19 @@ const MainView = ()=>{
                                 children: movie.Title
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                                lineNumber: 75,
-=======
                                 lineNumber: 82,
->>>>>>> main
                                 columnNumber: 13
                             }, undefined)
                         ]
                     }, movie._id, true, {
                         fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                        lineNumber: 73,
-=======
                         lineNumber: 80,
->>>>>>> main
                         columnNumber: 11
                     }, undefined))
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-            lineNumber: 67,
-=======
             lineNumber: 74,
->>>>>>> main
             columnNumber: 7
         }, undefined);
     }
@@ -27391,31 +27316,20 @@ const MainView = ()=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 onClick: ()=>{
                     setUser(null);
-<<<<<<< HEAD
-=======
                     setToken(null);
                     localStorage.clear();
->>>>>>> main
                 },
                 children: "Logout"
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 90,
-=======
                 lineNumber: 93,
->>>>>>> main
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: "The list is empty!"
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 91,
-=======
                 lineNumber: 94,
->>>>>>> main
                 columnNumber: 9
             }, undefined)
         ]
@@ -27425,42 +27339,27 @@ const MainView = ()=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 onClick: ()=>{
                     setUser(null);
-<<<<<<< HEAD
-=======
                     setToken(null);
                     localStorage.clear();
->>>>>>> main
                 },
                 children: "Logout"
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 97,
-=======
                 lineNumber: 100,
->>>>>>> main
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                 children: "Movie list: "
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 98,
-=======
                 lineNumber: 101,
->>>>>>> main
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("small", {
                 children: "click on!"
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 99,
-=======
                 lineNumber: 102,
->>>>>>> main
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -27471,38 +27370,22 @@ const MainView = ()=>{
                         }
                     }, movie._id, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                        lineNumber: 102,
-=======
                         lineNumber: 105,
->>>>>>> main
                         columnNumber: 11
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 100,
-=======
                 lineNumber: 103,
->>>>>>> main
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-<<<<<<< HEAD
-        lineNumber: 96,
-        columnNumber: 7
-    }, undefined);
-};
-_s(MainView, "B2NEPQfRXLOgNS4yV6EkqhlAtpk=");
-=======
         lineNumber: 99,
         columnNumber: 7
     }, undefined);
 };
 _s(MainView, "rxqxSomN8dzq3oChKVl5wx3N23c=");
->>>>>>> main
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27512,11 +27395,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-<<<<<<< HEAD
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
-=======
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
->>>>>>> main
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -28646,10 +28525,7 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "LoginView", ()=>LoginView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
-<<<<<<< HEAD
-=======
 var _reactDefault = parcelHelpers.interopDefault(_react);
->>>>>>> main
 var _s = $RefreshSig$();
 const LoginView = ({ onLoggedIn })=>{
     _s();
@@ -28659,17 +28535,6 @@ const LoginView = ({ onLoggedIn })=>{
         // this prevents the default behavior of the form which is to reload the entire page
         event.preventDefault();
         const data = {
-<<<<<<< HEAD
-            access: username,
-            secret: password
-        };
-        fetch("https://movies-my-flix-307c49ee24e7.herokuapp.com/login", {
-            method: "POST",
-            body: JSON.stringify(data)
-        }).then((response)=>{
-            if (response.ok) onLoggedIn(username);
-            else alert("Login failed");
-=======
             Username: username,
             Password: password
         };
@@ -28689,7 +28554,6 @@ const LoginView = ({ onLoggedIn })=>{
             } else alert("No such user");
         }).catch((e)=>{
             alert("Something went wrong");
->>>>>>> main
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -28705,21 +28569,13 @@ const LoginView = ({ onLoggedIn })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-<<<<<<< HEAD
-                        lineNumber: 32,
-=======
                         lineNumber: 45,
->>>>>>> main
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 30,
-=======
                 lineNumber: 43,
->>>>>>> main
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -28732,21 +28588,13 @@ const LoginView = ({ onLoggedIn })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-<<<<<<< HEAD
-                        lineNumber: 41,
-=======
                         lineNumber: 54,
->>>>>>> main
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 39,
-=======
                 lineNumber: 52,
->>>>>>> main
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -28754,21 +28602,13 @@ const LoginView = ({ onLoggedIn })=>{
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-<<<<<<< HEAD
-                lineNumber: 48,
-=======
                 lineNumber: 61,
->>>>>>> main
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/login-view/login-view.jsx",
-<<<<<<< HEAD
-        lineNumber: 29,
-=======
         lineNumber: 42,
->>>>>>> main
         columnNumber: 5
     }, undefined);
 };
@@ -28782,8 +28622,6 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-<<<<<<< HEAD
-=======
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"4OGiN":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$73d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -28928,7 +28766,6 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
->>>>>>> main
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lJZlQ":[function() {},{}]},["4s3Ar","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
