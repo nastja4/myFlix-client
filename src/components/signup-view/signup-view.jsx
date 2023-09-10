@@ -61,9 +61,14 @@ export const SignupView = () => {
         />
       </Form.Group>
 
+
+
+
+
+
       <Form.Group controlId="formEmail">
         <Form.Label>Email:</Form.Label>
-        <Form.Control
+        <Form.Control className="custom-placeholder-color"
           type="email"
           placeholder="Enter email"
           value={email}
@@ -76,7 +81,7 @@ export const SignupView = () => {
 
       <Form.Group controlId="formBirthday">
         <Form.Label>Birthday:</Form.Label>
-        <Form.Control
+        <Form.Control className="custom-placeholder-color"
           type="date"
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
@@ -122,7 +127,7 @@ export const SignupView = () => {
         />
       </label> */}
 
-    <Button variant="primary" type="submit" style={{margin: "3% 0"}}>
+    <Button variant="primary" type="submit" className="submit-button">
       Submit
     </Button>    
   </Form>
