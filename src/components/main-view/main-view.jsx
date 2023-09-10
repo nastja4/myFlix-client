@@ -63,15 +63,15 @@ export const MainView = () => {
   return (
     <Row className="justify-content-md-center">
       {!user ? (        
-        <Col md={5} className="">
-          <div className="">
-          <p><strong>Log in</strong></p>
+        <Col md={5} className="d-flex align-items-center justify-content-center" style={{ height: "100vh" }}>
+          <div className="text-left" style={{ width: "100%" }}>
+          <p className="text-center"><strong>Log in</strong></p>
           <LoginView onLoggedIn={(user, token) => {
               setUser(user);
               setToken(token);
           }} />        
-          or
-          <p><strong>Sign up</strong></p>
+          {/* or */}<br/>
+          <p className="text-center"><strong>Sign up</strong></p>
           <SignupView />
           </div>
         </Col>        
@@ -79,7 +79,7 @@ export const MainView = () => {
       ) : selectedMovie ? (
         <Col md={8}>
         {/* const similarMovies = movies.filter((movie) => movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id); */}          
-          <Button variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>            
+          <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>            
           <MovieView movie={selectedMovie} onBackClick={() => { setSelectedMovie(null); }} />
           
           <hr />
@@ -87,7 +87,7 @@ export const MainView = () => {
           <br/>
           {similarMovies.map((movie) => (
             <Col className="mb-5" key={movie._id} md={4}>
-              <img className="w-100" src={movie.ImagePath} alt={movie.Title}  /*style={{ width: "100%" }} */  />            
+              <img className="w-100" src={movie.ImagePath} alt={movie.Title} />            
               <p onClick={() => setSelectedMovie(movie)}><strong>{movie.Title}</strong></p>              
             </Col>            
           ))}        
@@ -96,18 +96,18 @@ export const MainView = () => {
 
       ) : movies.length === 0 ? (
         <div>
-          <Button variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
+          <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
           <div>The list is empty!</div>
         </div>
       ) : (
         <>
           <p>
-          <Button variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
+          <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
           </p>          
           <h3>Movies</h3>                  
           {movies.map((movie) => (
             <Col className="mb-5" key={movie._id} xs={6} md={4} lg={3} xl={2}>
-              <MovieCard                
+              <MovieCard style={{ color: '#09066f' }}               
                 movie={movie}
                 onMovieClick={(newSelectedMovie) => {
                   setSelectedMovie(newSelectedMovie);

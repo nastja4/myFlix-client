@@ -27239,17 +27239,24 @@ const MainView = ()=>{
         className: "justify-content-md-center",
         children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
             md: 5,
-            className: "",
+            className: "d-flex align-items-center justify-content-center",
+            style: {
+                height: "100vh"
+            },
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "",
+                className: "text-left",
+                style: {
+                    width: "100%"
+                },
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        className: "text-center",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
                             children: "Log in"
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
                             lineNumber: 68,
-                            columnNumber: 14
+                            columnNumber: 38
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
@@ -27266,14 +27273,19 @@ const MainView = ()=>{
                         lineNumber: 69,
                         columnNumber: 11
                     }, undefined),
-                    "or",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 73,
+                        columnNumber: 21
+                    }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        className: "text-center",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("strong", {
                             children: "Sign up"
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
                             lineNumber: 74,
-                            columnNumber: 14
+                            columnNumber: 38
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
@@ -27299,6 +27311,7 @@ const MainView = ()=>{
             md: 8,
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                    className: "custom-logout-button",
                     variant: "secondary",
                     onClick: ()=>{
                         setUser(null);
@@ -27379,6 +27392,7 @@ const MainView = ()=>{
         }, undefined) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                    className: "custom-logout-button",
                     variant: "secondary",
                     onClick: ()=>{
                         setUser(null);
@@ -27407,6 +27421,7 @@ const MainView = ()=>{
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                        className: "custom-logout-button",
                         variant: "secondary",
                         onClick: ()=>{
                             setUser(null);
@@ -27438,6 +27453,9 @@ const MainView = ()=>{
                         lg: 3,
                         xl: 2,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                            style: {
+                                color: "#09066f"
+                            },
                             movie: movie,
                             onMovieClick: (newSelectedMovie)=>{
                                 setSelectedMovie(newSelectedMovie);
@@ -27547,6 +27565,9 @@ var _movieCardScss = require("./movie-card.scss");
 const MovieCard = ({ movie, onMovieClick })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "h-100",
+        style: {
+            color: "#09066f"
+        },
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                 variant: "top",
@@ -41435,9 +41456,7 @@ const LoginView = ({ onLoggedIn })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                 variant: "primary",
                 type: "submit",
-                style: {
-                    margin: "3% 0"
-                },
+                className: "submit-button",
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
@@ -41573,6 +41592,7 @@ const SignupView = ()=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                        className: "custom-placeholder-color",
                         type: "email",
                         placeholder: "Enter email",
                         value: email,
@@ -41600,6 +41620,7 @@ const SignupView = ()=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                        className: "custom-placeholder-color",
                         type: "date",
                         value: birthday,
                         onChange: (e)=>setBirthday(e.target.value)
@@ -41617,9 +41638,7 @@ const SignupView = ()=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                 variant: "primary",
                 type: "submit",
-                style: {
-                    margin: "3% 0"
-                },
+                className: "submit-button",
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/signup-view/signup-view.jsx",
