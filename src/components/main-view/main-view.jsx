@@ -6,6 +6,7 @@ import { SignupView } from "../signup-view/signup-view";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export const MainView = () => {  
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -56,69 +57,212 @@ export const MainView = () => {
   // }, []);
 
   
-  const similarMovies = selectedMovie
-  ? movies.filter((movie) => movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id)
-  : [];
+  // const similarMovies = selectedMovie
+  // ? movies.filter((movie) => movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id)
+  // : [];
 
   return (
-    <Row className="justify-content-md-center">
-      {!user ? (        
-        <Col md={5} className="d-flex align-items-center justify-content-center" style={{ height: "100vh" }}>
-          <div className="text-left" style={{ width: "100%" }}>
-          <p className="text-center"><strong>Log in</strong></p>
-          <LoginView onLoggedIn={(user, token) => {
-              setUser(user);
-              setToken(token);
-          }} />        
-          {/* or */}<br/>
-          <p className="text-center"><strong>Sign up</strong></p>
-          <SignupView />
-          </div>
-        </Col>        
+    <BrowserRouter>
+      <Row className="justify-content-md-center">
+        <Routes>
+          <Route 
+            path="/signup"
+            element={
+              <>
+                {user? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5} className="d-flex align-items-center justify-content-center" style={{ height: "100vh" }}>
+                    <div className="text-left" style={{ width: "100%" }}>
+                      <p className="text-center">Don't have an account? <strong>Sign up</strong></p>
+                      <SignupView />
+                    </div>
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5} className="d-flex align-items-center justify-content-center" style={{ height: "100vh" }}>
+                    <div className="text-left" style={{ width: "100%" }}>
+                      <p className="text-center"><strong>Log in</strong></p>
+                      <LoginView onLoggedIn={(user, token) => {
+                          setUser(user);
+                          setToken(token);
+                      }} />
+                    </div>
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route 
+            path="/movies/:movieId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>  
+                    <p>                 
+                    <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
+                    </p> 
+                    <p>The list is empty!</p>                    
+                  </Col>                  
+                ) : (
 
-      ) : selectedMovie ? (
-        <Col md={8}>
-        {/* const similarMovies = movies.filter((movie) => movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id); */}          
-          <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>            
-          <MovieView movie={selectedMovie} onBackClick={() => { setSelectedMovie(null); }} />
-          
-          <hr />
-          <h2>Similar Movies</h2>
-          <br/>
-          {similarMovies.map((movie) => (
-            <Col className="mb-5" key={movie._id} md={4}>
-              <img className="w-100" src={movie.ImagePath} alt={movie.Title} />            
-              <p onClick={() => setSelectedMovie(movie)}><strong>{movie.Title}</strong></p>              
-            </Col>            
-          ))}        
-          
-        </Col>
+<Col md={8}>
+  <p>
+  <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
+  </p>
+  <MovieView movies={movies} selectedMovie={selectedMovie} />
 
-      ) : movies.length === 0 ? (
-        <div>
-          <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
-          <div>The list is empty!</div>
-        </div>
-      ) : (
-        <>
-          <p>
-          <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
-          </p>          
-          <h3>Movies</h3>                  
-          {movies.map((movie) => (
-            <Col className="mb-5" key={movie._id} xs={6} md={4} lg={3} xl={2}>
-              <MovieCard style={{ color: '#09066f' }}               
-                movie={movie}
-                onMovieClick={(newSelectedMovie) => {
-                  setSelectedMovie(newSelectedMovie);
-                }}
-              />
-            </Col>              
-          ))}          
-        </>        
-      )}
-    </Row>
+  {/* <hr />
+  <h2>Similar Movies</h2>
+  <br/> */}
+  {/* {similarMovies.map((movie) => (
+    <Col className="mb-5" key={movie._id} md={4} > 
+      <img className="w-100" src={movie.ImagePath} alt={movie.Title} />            
+      <p onClick={() => setSelectedMovie(movie)} style={{ cursor: "pointer" }}><strong>{movie.Title}</strong></p>              
+    </Col>            
+  ))} */}
+</Col>
+
+                  // <Col md={8}>
+                  // {/* const similarMovies = movies.filter((movie) => movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id); */}          
+                  //   <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>            
+                  //   <MovieView movie={selectedMovie} onBackClick={() => { setSelectedMovie(null); }} />
+                    
+                  //   <hr />
+                  //   <h2>Similar Movies</h2>
+                  //   <br/>
+                  //   {similarMovies.map((movie) => (
+                  //     <Col className="mb-5" key={movie._id} md={4} > 
+                  //       <img className="w-100" src={movie.ImagePath} alt={movie.Title} />            
+                  //       <p onClick={() => setSelectedMovie(movie)} style={{ cursor: "pointer" }}><strong>{movie.Title}</strong></p>              
+                  //     </Col>            
+                  //   ))}                     
+                  // </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>  
+                    <p>                                    
+                    <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
+                    </p>
+                    <p>The list is empty!</p>                    
+                  </Col>  
+                ) : (
+                  <>  
+                    <p>                
+                    <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
+                    </p>         
+                    <h3>Movies</h3>                  
+                    {movies.map((movie) => (
+
+<Col className="mb-5" key={movie._id} xs={6} md={4} lg={3} xl={2}>
+  <MovieCard style={{ color: '#09066f' }}               
+  movie={movie} />
+</Col>
+
+                      // <Col className="mb-5" key={movie._id} xs={6} md={4} lg={3} xl={2}>
+                      //   <MovieCard style={{ color: '#09066f' }}               
+                      //     movie={movie}
+                      //     onMovieClick={(newSelectedMovie) => {
+                      //       setSelectedMovie(newSelectedMovie);
+                      //     }}
+                      //   />
+                      // </Col>              
+                    ))}          
+                  </>      
+                )}
+              </>
+            }
+          />
+        </Routes>
+      </Row>
+    </BrowserRouter>
   );
+};
+
+
+
+
+
+
+  // return (
+  //   <Row className="justify-content-md-center">
+  //     {!user ? (        
+  //       <Col md={5} className="d-flex align-items-center justify-content-center" style={{ height: "100vh" }}>
+  //         <div className="text-left" style={{ width: "100%" }}>
+  //         <p className="text-center"><strong>Log in</strong></p>
+  //         <LoginView onLoggedIn={(user, token) => {
+  //             setUser(user);
+  //             setToken(token);
+  //         }} />        
+  //         {/* or */}<br/>
+  //         <p className="text-center">Don't have an account? <strong>Sign up</strong></p>
+  //         <SignupView />
+  //         </div>
+  //       </Col>        
+
+  //     ) : selectedMovie ? (
+  //       <Col md={8}>
+  //       {/* const similarMovies = movies.filter((movie) => movie.Genre.Name === selectedMovie.Genre.Name && movie._id !== selectedMovie._id); */}          
+  //         <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>            
+  //         <MovieView movie={selectedMovie} onBackClick={() => { setSelectedMovie(null); }} />
+          
+  //         <hr />
+  //         <h2>Similar Movies</h2>
+  //         <br/>
+  //         {similarMovies.map((movie) => (
+  //           <Col className="mb-5" key={movie._id} md={4} > 
+  //             <img className="w-100" src={movie.ImagePath} alt={movie.Title} />            
+  //             <p onClick={() => setSelectedMovie(movie)} style={{ cursor: "pointer" }}><strong>{movie.Title}</strong></p>              
+  //           </Col>            
+  //         ))}        
+          
+  //       </Col>
+
+  //     ) : movies.length === 0 ? (
+  //       <div>
+  //         <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
+  //         <div>The list is empty!</div>
+  //       </div>
+  //     ) : (
+  //       <>
+  //         <p>
+  //         <Button className="custom-logout-button" variant="secondary" onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
+  //         </p>          
+  //         <h3>Movies</h3>                  
+  //         {movies.map((movie) => (
+  //           <Col className="mb-5" key={movie._id} xs={6} md={4} lg={3} xl={2}>
+  //             <MovieCard style={{ color: '#09066f' }}               
+  //               movie={movie}
+  //               onMovieClick={(newSelectedMovie) => {
+  //                 setSelectedMovie(newSelectedMovie);
+  //               }}
+  //             />
+  //           </Col>              
+  //         ))}          
+  //       </>        
+  //     )}
+  //   </Row>
+  // );
 
   
 
@@ -185,4 +329,6 @@ export const MainView = () => {
   //     </div>
   //   );
   // } //
-};
+
+
+// };
