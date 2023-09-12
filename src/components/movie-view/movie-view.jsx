@@ -8,15 +8,10 @@ import Button from "react-bootstrap/Button";
 
 export const MovieView = ({ movies /*movie, onBackClick */ }) => {
   const { movieId } = useParams();
-
-  const movie = movies.find((b) => b._id === movieId);
-
-  // //
+  const movie = movies.find((b) => b._id === movieId);  
   const similarMovies = movies.filter((otherMovie) => otherMovie.Genre.Name === movie.Genre.Name && otherMovie._id !== movie._id);
   
-  // //
-
-
+  
   return (
     <div>
       <h1>{movie.Title}</h1>

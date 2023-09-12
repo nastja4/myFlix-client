@@ -13178,19 +13178,6 @@ body {
   color: #09066f;
 }
 
-.custom-logout-button {
-  color: #09066f;
-  background: linear-gradient(70deg, #e0cee7 0%, #cc8fe9 100%);
-  border: none;
-  padding: 5px 15px;
-  transition: background-color 1s;
-}
-
-.custom-logout-button:hover {
-  color: #09066f;
-  background: linear-gradient(70deg, #cc8fe9 0%, #e0cee7 100%);
-}
-
 .back-button, .back-button:hover {
   color: #09066f;
   border: 1px solid #09066f;

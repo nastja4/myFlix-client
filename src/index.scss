@@ -41,18 +41,18 @@ body {
 // border-image: linear-gradient(60deg, #e0cee7 0%, #CC8FE9 100%);
 // border-image-slice: 1;
 
-.custom-logout-button {
-  color: #09066f;
-  background: linear-gradient(70deg, #e0cee7 0%, #CC8FE9 100%);  
-  border: none; 
-  padding: 5px 15px;
-  transition: background-color 1s;
-}
+// .custom-logout-button {
+//   color: #09066f;
+//   background: linear-gradient(70deg, #e0cee7 0%, #CC8FE9 100%);  
+//   border: none; 
+//   padding: 5px 15px;
+//   transition: background-color 1s;
+// }
 
-.custom-logout-button:hover {
-  color: #09066f;
-  background: linear-gradient(70deg, #CC8FE9  0%, #e0cee7 100%);
-}
+// .custom-logout-button:hover {
+//   color: #09066f;
+//   background: linear-gradient(70deg, #CC8FE9  0%, #e0cee7 100%);
+// }
 
 .back-button {
   color: #09066f; 
@@ -75,3 +75,6 @@ body {
   color: #09066f;
   border: 2px solid #CC8FE9;
 }
+
+
+
