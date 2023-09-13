@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Col from "react-bootstrap/Col"; 
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -6,7 +8,20 @@ import "./movie-view.scss";
 import Button from "react-bootstrap/Button";
 
 
-export const MovieView = ({ movies /*movie, onBackClick */ }) => {
+export const MovieView = ({ movies }) => {
+
+  // favorites
+  // const [isFavorite, setIsFavorite] = useState(false);
+
+  // const handleToggleFavorite = () => {
+  //   // Toggle the favorite status in the UI
+  //   setIsFavorite(!isFavorite);
+
+  //   // Make an API request to add or remove the movie from favorites
+  //   onFavoriteClick(movie._id, !isFavorite);
+  // };
+
+
   const { movieId } = useParams();
   const movie = movies.find((b) => b._id === movieId);  
   const similarMovies = movies.filter((otherMovie) => otherMovie.Genre.Name === movie.Genre.Name && otherMovie._id !== movie._id);
@@ -36,10 +51,20 @@ export const MovieView = ({ movies /*movie, onBackClick */ }) => {
           Back to the movie list
         </Button>
       </Link>
-      {/* <Button variant="primary" onClick={onBackClick} className="back-button" style={{ cursor: "pointer" }}>
-        Back to the movie list
+      <br/>
+
+
+      <br/>
+      {/* // favorites */}
+      {/* <Button 
+        variant="primary" 
+        onClick={() => handleToggleFavorite(movie)}
+      >
+        {movie.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
       </Button> */}
       
+
+
       <hr />
       <h2>Similar Movies</h2>
       <br />
@@ -58,3 +83,8 @@ export const MovieView = ({ movies /*movie, onBackClick */ }) => {
   );
 };
 
+
+MovieView.propTypes = {
+  movies: PropTypes.array.isRequired, 
+  // onFavoriteClick: PropTypes.func.isRequired, // Add callback function
+};

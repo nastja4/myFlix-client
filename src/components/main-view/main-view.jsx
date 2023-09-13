@@ -13,11 +13,43 @@ import { ProfileView } from "../profile-view/profile-view";
 export const MainView = () => {  
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedUser? storedUser : null);
-  const [token, setToken] = useState(storedToken? storedToken : null);
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
   // const [selectedMovie, setSelectedMovie] = useState(null);   
   const [movies, setMovies] = useState([]);  
   
+  
+  const onLoggedOut = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.clear();
+  };
+  
+
+//favorites
+  // Callback function to add/remove movies from favorites
+  const handleFavoriteClick = (movieId) => {
+    setMovies((prevMovies) => {
+      return prevMovies.map((movie) => {
+        if (movie._id === movieId) {
+          return { ...movie, isFavorite: !movie.isFavorite };
+        }
+        return movie;
+      });
+    });
+  };
+  //   const updatedMovies = movies.map((movie) => {
+  //     if (movie._id === movieId) {
+  //       return { ...movie, isFavorite: !movie.isFavorite };
+  //     }
+  //     return movie;
+  //   });
+  //   setMovies(updatedMovies);
+  // };
+    
+
+
+
   useEffect(() => {
     if (!token) {
       return;
@@ -91,7 +123,11 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>                 
                 ) : (
                   <Col md={8} className="mt-5">                    
-                    <MovieView movies={movies} />  
+                    <MovieView 
+                      movies={movies}
+                      user={user}
+                      // onFavoriteClick={handleFavoriteClick} // Pass the callback function
+                    />  
                   </Col>                 
                 )}
               </>
@@ -111,7 +147,12 @@ export const MainView = () => {
                     {movies.map((movie) => (
                       <Col className="mb-5" key={movie._id} xs={6} md={4} lg={3} xl={2}>
                         <MovieCard style={{ color: '#09066f' }}               
-                        movie={movie} />
+                          movie={movie} 
+                          user={user}
+                          token={token} // Pass the token prop to MovieCard
+                          onFavoriteClick={handleFavoriteClick} // Pass the callback function
+                          isFavorite={movie.isFavorite || false} /* Ensure isFavorite is defined */
+                        />
                       </Col>                                  
                     ))}          
                   </>      
@@ -127,13 +168,14 @@ export const MainView = () => {
               {!user ? (
                 <Navigate to="/login" replace />
               ) : (
-                <Col xs={6} md={4} lg={3} xl={2}>
-                  <ProfileView
-                    // user={updatedUser}
-                    // deleteAccount={deleteAccount}
-                    // favoriteMovies={favoriteMovies}
-                    // addToFavorites={addToFavorites}
-                    // removeFromFavorites={removeFromFavorites}
+                <Col md={6} >
+                  <ProfileView                  
+                    user={user}
+                    token={token}
+                    setUser={setUser}
+                    movies={movies} 
+                    onLoggedOut={onLoggedOut}
+                    handleFavoriteClick={handleFavoriteClick} // Pass the function as a prop        
                   />
                 </Col>               
               )}

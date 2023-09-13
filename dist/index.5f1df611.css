@@ -13178,7 +13178,12 @@ body {
   color: #09066f;
 }
 
-.back-button, .back-button:hover {
+.back-button {
+  color: #09066f;
+  border: 2px solid #09066f;
+}
+
+.back-button:hover {
   color: #09066f;
   border: 1px solid #09066f;
 }
