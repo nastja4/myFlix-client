@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
-export const ProfileView = ({ user, token, onLoggedOut, movies, handleFavoriteClick }) => {
+export const ProfileView = ({ user, token, onLoggedOut, movies, handleFavoriteClick, favoriteMovies }) => {
   const [userData, setUserData] = useState(user); // State to store user data
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +30,7 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, handleFavoriteCl
   
 
 
-  const [favoriteMovies, setFavoriteMovies] = useState([]); // State to store favorite movies
+  
   // let favoriteMovies = [];
 
   // if (user && user.FavoriteMovies) {
@@ -158,7 +158,8 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, handleFavoriteCl
               token={token} // Pass the token prop to MovieCard
               // onFavoriteClick={handleFavoriteClick} // Pass the callback function
               onFavoriteClick={() => handleFavoriteClick(movie._id)} // Pass the movie ID to handleFavoriteClick
-              isFavorite={true} // Pass the isFavorite prop here
+              // isFavorite={true} // Pass the isFavorite prop here
+              isFavorite={user.FavoriteMovies.includes(movie._id)} // Check if movie is in favorites
             />            
           </Col>
         ))}

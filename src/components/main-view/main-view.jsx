@@ -17,7 +17,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   // const [selectedMovie, setSelectedMovie] = useState(null);   
   const [movies, setMovies] = useState([]);  
-  
+  const [favoriteMovies, setFavoriteMovies] = useState([]); // Initialize favoriteMovies state here
   
   const onLoggedOut = () => {
     setUser(null);
@@ -175,6 +175,7 @@ export const MainView = () => {
                     setUser={setUser}
                     movies={movies} 
                     onLoggedOut={onLoggedOut}
+                    favoriteMovies={favoriteMovies} // Pass the favoriteMovies prop here
                     handleFavoriteClick={handleFavoriteClick} // Pass the function as a prop        
                   />
                 </Col>               

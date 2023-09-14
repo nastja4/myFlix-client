@@ -110,6 +110,8 @@ MovieCard.propTypes = {
     // favirites
     isFavorite: PropTypes.bool, // Add isFavorite property
   }).isRequired,
+  user: PropTypes.object, // Add user object
+  token: PropTypes.string, // Add token
   onFavoriteClick: PropTypes.func.isRequired, // Add callback function
 };
 
