@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
-export const ProfileView = ({ user, token, onLoggedOut, movies, handleFavoriteClick, favoriteMovies }) => {
+export const ProfileView = ({ user, token, onLoggedOut, movies, handleFavoriteClick }) => {
   const [userData, setUserData] = useState(user); // State to store user data
   const [loading, setLoading] = useState(true);
 
@@ -27,6 +27,7 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, handleFavoriteCl
     setShowDeleteModal(false);
   };
 
+
   
 
 
@@ -36,6 +37,7 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, handleFavoriteCl
   // if (user && user.FavoriteMovies) {
   //   favoriteMovies = movies.filter((m) => user.FavoriteMovies.includes(m._id));
   // }
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
     if (user && user.FavoriteMovies) {
@@ -151,7 +153,7 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, handleFavoriteCl
        <Row>
          <h3>Favorite movies:</h3>
          {favoriteMovies.map((movie) => (
-          <Col className="mb-5" key={movie._id} xs={6} md={4} lg={3} xl={2}>
+          <Col className="mb-12" key={movie._id} xs={6} md={4} lg={3} xl={2}>
             <MovieCard style={{ color: '#09066f' }}               
               movie={movie} 
               user={user}

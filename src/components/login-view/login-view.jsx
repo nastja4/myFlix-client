@@ -26,11 +26,11 @@ export const LoginView = ({ onLoggedIn }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Login response: ", data);
-        if (data.userMicro) {
+        if (data.user) {   // user instead of userMicro
           // After a successful login, the user object and token will be stored using localStorage
-          localStorage.setItem("user", JSON.stringify(data.userMicro));
+          localStorage.setItem("user", JSON.stringify(data.user));  // user instead of userMicro
           localStorage.setItem("token", data.token);
-          onLoggedIn(data.userMicro, data.token);
+          onLoggedIn(data.user, data.token); // user instead of userMicro
         } else {
           alert("No such user");
         }
