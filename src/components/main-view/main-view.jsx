@@ -17,7 +17,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   // const [selectedMovie, setSelectedMovie] = useState(null);   
   const [movies, setMovies] = useState([]);  
-  const [favoriteMovies, setFavoriteMovies] = useState([]); // Initialize favoriteMovies state here
+  
   
   const onLoggedOut = () => {
     setUser(null);
@@ -28,16 +28,16 @@ export const MainView = () => {
 
 //favorites
   // Callback function to add/remove movies from favorites
-  const handleFavoriteClick = (movieId) => {
-    setMovies((prevMovies) => {
-      return prevMovies.map((movie) => {
-        if (movie._id === movieId) {
-          return { ...movie, isFavorite: !movie.isFavorite };
-        }
-        return movie;
-      });
-    });
-  };
+  // const handleFavoriteClick = (movieId) => {
+  //   setMovies((prevMovies) => {
+  //     return prevMovies.map((movie) => {
+  //       if (movie._id === movieId) {
+  //         return { ...movie, isFavorite: !movie.isFavorite };
+  //       }
+  //       return movie;
+  //     });
+  //   });
+  // };
   //   const updatedMovies = movies.map((movie) => {
   //     if (movie._id === movieId) {
   //       return { ...movie, isFavorite: !movie.isFavorite };
@@ -46,8 +46,13 @@ export const MainView = () => {
   //   });
   //   setMovies(updatedMovies);
   // };
-    
-
+  
+  // let's define a function to update a user's info
+  const updateUser = (user) => {
+    // set localStorage user to overwrite the existing one
+    localStorage.setItem('user', JSON.stringify(user));
+    setUser(user);
+  }
 
 
   useEffect(() => {
@@ -125,8 +130,7 @@ export const MainView = () => {
                   <Col md={8} className="mt-5">                    
                     <MovieView 
                       movies={movies}
-                      user={user}
-                      // onFavoriteClick={handleFavoriteClick} // Pass the callback function
+                      user={user}                      
                     />  
                   </Col>                 
                 )}
@@ -150,8 +154,7 @@ export const MainView = () => {
                           movie={movie} 
                           user={user}
                           token={token} // Pass the token prop to MovieCard
-                          onFavoriteClick={handleFavoriteClick} // Pass the callback function
-                          isFavorite={movie.isFavorite || false} /* Ensure isFavorite is defined */
+                          updateUser={updateUser} // Pass the callback function
                         />
                       </Col>                                  
                     ))}          
@@ -165,21 +168,20 @@ export const MainView = () => {
             path="/profile"
             element={
               <>
-              {!user ? (
-                <Navigate to="/login" replace />
-              ) : (
-                <Col md={12} >
-                  <ProfileView                  
-                    user={user}
-                    token={token}
-                    setUser={setUser}
-                    movies={movies} 
-                    onLoggedOut={onLoggedOut}
-                    favoriteMovies={favoriteMovies} // Pass the favoriteMovies prop here
-                    handleFavoriteClick={handleFavoriteClick} // Pass the function as a prop        
-                  />
-                </Col>               
-              )}
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={12} >
+                    <ProfileView                  
+                      user={user}
+                      token={token}
+                      setUser={setUser}
+                      movies={movies} 
+                      onLoggedOut={onLoggedOut}
+                      updateUser={updateUser} // Pass the function as a prop
+                    />
+                  </Col>               
+                )}
               </>
             }
           />

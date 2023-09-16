@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-// favorite
-export const MovieCard = ({ movie, user, token, onFavoriteClick }) => {
 
-  
-
+export const MovieCard = ({ movie, user, token, updateUser }) => {
 
   // favorites
-  const [isFavorite, setIsFavorite] = useState(movie.isFavorite);
+  const [isFavorite, setIsFavorite] = useState(false);   
+
+  // let's use the useEffect hook to set the isFavorite state based on whether the movie ID is included in the user's favorite list. e.g.,
+  useEffect(() => {
+    if (user.FavoriteMovies && movie._id) {
+      setIsFavorite(user.FavoriteMovies.includes(movie._id))
+    }
+  }, [movie]);
+  
 
   const handleToggleFavorite = () => {
     console.log('Toggling favorite');
@@ -18,9 +23,7 @@ export const MovieCard = ({ movie, user, token, onFavoriteClick }) => {
       // Handle the case when the user is not logged in
       // You might want to show an error message or redirect to the login page
       return;
-    }
-    // Toggle the favorite status in the UI
-    setIsFavorite(!isFavorite);
+    }    
 
     // Make an API request to add or remove the movie from favorites
     const url = `https://movies-my-flix-307c49ee24e7.herokuapp.com/users/${user.Username}/movies/${movie._id}`;
@@ -42,8 +45,14 @@ export const MovieCard = ({ movie, user, token, onFavoriteClick }) => {
       .then((updatedUser) => {
         console.log('Updated user:', updatedUser);
         if (updatedUser && updatedUser.Username) {
+          const updatedUserInfo = {
+            ...user,
+            FavoriteMovies: updatedUser.FavoriteMovies
+          }
+          // Toggle the favorite status in the UI
+          setIsFavorite(!isFavorite);
           // Update the user's data in the state or wherever it's stored
-          onFavoriteClick(updatedUser.FavoriteMovies);
+          updateUser(updatedUserInfo);          
         } else {
           console.error('Unexpected API response:', updatedUser);
         }
@@ -107,11 +116,10 @@ MovieCard.propTypes = {
       Death: PropTypes.string.isRequired,
     }).isRequired, 
     
-    // favirites
+    // favorites
     isFavorite: PropTypes.bool, // Add isFavorite property
   }).isRequired,
   user: PropTypes.object, // Add user object
-  token: PropTypes.string, // Add token
-  onFavoriteClick: PropTypes.func.isRequired, // Add callback function
+  token: PropTypes.string, // Add token  
 };
 
