@@ -1,12 +1,6 @@
 
 
-.back-button {
-  color: #09066f;
-  background-color: #cc8fe9;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 12px;
-}
+
 
 :root, [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
@@ -13173,6 +13167,10 @@ body {
   margin: 3% 0;
 }
 
+.submit-button:hover {
+  color: #09066f;
+}
+
 .custom-placeholder-color::placeholder {
   color: #09066f;
   opacity: .7;
@@ -13184,10 +13182,32 @@ body {
 
 .custom-logout-button {
   color: #09066f;
-  background: none;
-  border: 4px solid #0000;
-  border-image: linear-gradient(60deg, #e0cee7 0%, #cc8fe9 100%) 1;
+  background: linear-gradient(70deg, #e0cee7 0%, #cc8fe9 100%);
+  border: none;
   padding: 5px 15px;
+  transition: background-color 1s;
+}
+
+.custom-logout-button:hover {
+  color: #09066f;
+  background: linear-gradient(70deg, #cc8fe9 0%, #e0cee7 100%);
+}
+
+.back-button, .back-button:hover {
+  color: #09066f;
+  border: 1px solid #09066f;
+}
+
+.open-button {
+  color: #09066f;
+  border: 2px solid #cc8fe9;
+}
+
+.open-button:hover {
+  cursor: pointer;
+  color: #09066f;
+  background: #cc8fe9;
+  border: 2px solid #cc8fe9;
 }
 
 /*# sourceMappingURL=index.e3f97e84.css.map */
