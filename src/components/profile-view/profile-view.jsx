@@ -146,25 +146,7 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
         <div><strong>Birthday: </strong>{userData.Birthday}</div>
         </div>
       </div>
-      <br/>
-
-      <Row>
-        <h3>Favorite movies:</h3>
-        {favoriteMovies.map((movie) => (
-          <Col className="mb-12" key={movie._id} xs={6} md={4} lg={3} xl={2}>
-            <MovieCard style={{ color: '#09066f' }}               
-              movie={movie} 
-              user={user}
-              token={token} // Pass the token prop to MovieCard
-              updateUser={updateUser} // Pass the updateUser function
-            />            
-          </Col>
-        ))}
-      </Row>
-      {console.log('Favorite Movies:', favoriteMovies)}
-
-
-      <br />
+      
       <hr />
       <div>
         <h4>Form for updating profile info</h4>
@@ -220,9 +202,10 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
           <Button variant="primary" type="submit" className="submit-button">
             Submit changes
           </Button> 
+          <br/>
 
           <br/>
-          <Button variant="warning" onClick={handleShowDeleteModal}>
+          <Button variant="danger" onClick={handleShowDeleteModal}>
             Delete account
           </Button>   
           <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
@@ -234,14 +217,31 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
               <Button variant="secondary" onClick={handleCloseDeleteModal}>
                 Cancel
               </Button>
-              <Button variant="warning" onClick={handleDeleteUser}>
+              <Button variant="danger" onClick={handleDeleteUser}>
                 Delete account
               </Button>
             </Modal.Footer>
           </Modal>
 
         </Form>        
-      </div>      
+      </div>   
+      <hr />
+
+      <Row>
+        <h3>Favorite movies:</h3>
+        {favoriteMovies.map((movie) => (
+          <Col className="mb-12" key={movie._id} xs={6} md={4} lg={3} xl={2}>
+            <MovieCard style={{ color: '#09066f' }}               
+              movie={movie} 
+              user={user}
+              token={token} // Pass the token prop to MovieCard
+              updateUser={updateUser} // Pass the updateUser function
+            />            
+          </Col>
+        ))}
+      </Row>
+      {console.log('Favorite Movies:', favoriteMovies)}
+
     </> 
   );
 };
