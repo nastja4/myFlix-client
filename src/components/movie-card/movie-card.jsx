@@ -4,7 +4,7 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
-export const MovieCard = ({ movie, user, token, updateUser }) => {
+export const MovieCard = ({ movie, user, token, updateUser, isProfileView = false }) => {
 
   // favorites
   const [isFavorite, setIsFavorite] = useState(false);   
@@ -14,8 +14,7 @@ export const MovieCard = ({ movie, user, token, updateUser }) => {
     if (user.FavoriteMovies && movie._id) {
       setIsFavorite(user.FavoriteMovies.includes(movie._id))
     }
-  }, [movie]);
-  
+  }, [movie]);  
 
   const handleToggleFavorite = () => {
     console.log('Toggling favorite');
@@ -64,9 +63,6 @@ export const MovieCard = ({ movie, user, token, updateUser }) => {
   };
 
 
-
-
-
   return (
     <Card className="h-100" style={{ color: '#09066f' }}>
       <Card.Img variant="top" src={movie.ImagePath} />
@@ -81,21 +77,25 @@ export const MovieCard = ({ movie, user, token, updateUser }) => {
         </Link>
         <br/>
 
-
         <br/>
         {/* // favorites */}
-        <Button 
-          variant={isFavorite ? 'danger' : 'primary'}
-          onClick={() => handleToggleFavorite()}
-        >
-          {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-        </Button>      
-
+        {/* Conditionally render the button based on isProfileView */}
+        {isProfileView && (
+          <div>            
+            <Button 
+              variant={isFavorite ? 'primary' : 'primary'}
+              onClick={() => handleToggleFavorite()}
+            >
+              {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+            </Button>    
+          </div>
+        )}  
 
       </Card.Body>
     </Card>    
   );
 };
+
 
 // Here is where we define all the props constraints for the MovieCard
 MovieCard.propTypes = {
@@ -114,8 +114,7 @@ MovieCard.propTypes = {
       Bio: PropTypes.string.isRequired,
       Birth: PropTypes.string.isRequired,
       Death: PropTypes.string.isRequired,
-    }).isRequired, 
-    
+    }).isRequired,     
     // favorites
     isFavorite: PropTypes.bool, // Add isFavorite property
   }).isRequired,

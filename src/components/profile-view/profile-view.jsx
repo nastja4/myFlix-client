@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap"; // Import Row and Col
+import { Row, Col } from "react-bootstrap"; 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import PropTypes from "prop-types";
 import { MovieCard } from "../movie-card/movie-card";
-import { MovieView } from "../movie-view/movie-view";
+
 
 export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) => {
   const [userData, setUserData] = useState(user); // State to store user data
@@ -27,11 +27,8 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
   const handleCloseDeleteModal = () => {
     setShowDeleteModal(false);
   };  
-
-
   
   // favorites
-
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
@@ -43,7 +40,6 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
       setFavoriteMovies(userFavoriteMovies);
     }
   }, [user, movies]);
-  
 
 
   useEffect(() => {
@@ -73,7 +69,6 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
 
 
   // update user info
-
   const handleUpdateUserInfo = (event) => {
     event.preventDefault();
 
@@ -114,7 +109,6 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
   
 
   // user deregister
-
   const handleDeleteUser = () => {    
     fetch(`https://movies-my-flix-307c49ee24e7.herokuapp.com/users/${user.Username}`, {
       method: "DELETE",
@@ -131,8 +125,7 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
     }).catch((error) => {
       console.error("Error deleting user: ", error);
     });
-  }
-    
+  }    
 
 
   return ( 
@@ -222,7 +215,6 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
               </Button>
             </Modal.Footer>
           </Modal>
-
         </Form>        
       </div>   
       <hr />
@@ -236,12 +228,12 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
               user={user}
               token={token} // Pass the token prop to MovieCard
               updateUser={updateUser} // Pass the updateUser function
+              isProfileView={true} 
             />            
           </Col>
         ))}
       </Row>
       {console.log('Favorite Movies:', favoriteMovies)}
-
     </> 
   );
 };
@@ -252,7 +244,7 @@ ProfileView.propTypes = {
   token: PropTypes.string.isRequired,
   onLoggedOut: PropTypes.func.isRequired,
   movies: PropTypes.array.isRequired,
-  handleFavoriteClick: PropTypes.func.isRequired, // Add this line
+  
 };
 
 
