@@ -78,11 +78,19 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
       <p><strong>{movie.Description}</strong></p>
       
       {/* // favorites */}
-      <Button 
+      <Button className="fav-button"
         variant={isFavorite ? 'primary' : 'primary'}
         onClick={() => handleToggleFavorite()}
       >
-        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        {isFavorite ? (
+          <>
+            <strong>Remove </strong>from Favorites
+          </>
+        ) : (
+          <>
+            <strong>Add </strong>to Favorites
+          </>
+        )}
       </Button> 
       <br/> 
       

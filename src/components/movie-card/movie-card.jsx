@@ -4,7 +4,7 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
-export const MovieCard = ({ movie, user, token, updateUser, isProfileView = false }) => {
+export const MovieCard = ({ movie, user, token, updateUser, isProfileView = true }) => {
 
   // favorites
   const [isFavorite, setIsFavorite] = useState(false);   
@@ -82,11 +82,19 @@ export const MovieCard = ({ movie, user, token, updateUser, isProfileView = fals
         {/* Conditionally render the button based on isProfileView */}
         {isProfileView && (
           <div>            
-            <Button 
+            <Button className="fav-button"
               variant={isFavorite ? 'primary' : 'primary'}
               onClick={() => handleToggleFavorite()}
             >
-              {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+              {isFavorite ? (
+                <>
+                  <strong>Remove </strong>from Favorites
+                </>
+              ) : (
+                <>
+                  <strong>Add </strong>to Favorites
+                </>
+              )}
             </Button>    
           </div>
         )}  

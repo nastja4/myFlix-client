@@ -65,7 +65,7 @@ export const MainView = () => {
                 {user? (
                   <Navigate to="/" />
                 ) : (
-                  <Col md={5} className="d-flex align-items-center justify-content-center" style={{ height: "100vh" }}>
+                  <Col md={5} className="mt-5">
                     <div className="text-left" style={{ width: "100%" }}>
                       <p className="text-center">Don't have an account? <strong>Sign up</strong></p>
                       <SignupView />
@@ -82,7 +82,7 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to="/" />
                 ) : (
-                  <Col md={5} className="d-flex align-items-center justify-content-center" style={{ height: "100vh" }}>
+                  <Col md={5} className="mt-5" >
                     <div className="text-left" style={{ width: "100%" }}>
                       <p className="text-center"><strong>Log in</strong></p>
                       <LoginView onLoggedIn={(user, token) => {
