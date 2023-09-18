@@ -82,7 +82,7 @@ export const MovieCard = ({ movie, user, token, updateUser, isProfileView = true
         {/* Conditionally render the button based on isProfileView */}
         {isProfileView && (
           <div>            
-            <Button className="fav-button"
+            <Button 
               variant={isFavorite ? 'primary' : 'primary'}
               onClick={() => handleToggleFavorite()}
             >

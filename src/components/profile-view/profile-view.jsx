@@ -149,7 +149,7 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
             </Modal.Header>
             <Modal.Body>Are you sure you want to delete your account?</Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleCloseDeleteModal} className="b-modul-cancel">
+              <Button variant="primary" onClick={handleCloseDeleteModal}>
                 Cancel
               </Button>
               <Button variant="danger" onClick={handleDeleteUser}>
@@ -170,7 +170,7 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
           <div className="error-message">{updateError}</div>
         )}
         <Row>
-          <Col md={6}>
+          <Col md={5}>
             <Form onSubmit={handleUpdateUserInfo} className="">
               <Form.Group controlId="formUsername">
                 <Form.Label>Username:</Form.Label>
