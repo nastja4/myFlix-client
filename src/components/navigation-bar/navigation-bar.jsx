@@ -2,14 +2,13 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
+  
   const navLinkStyle = { color: "#09066f" };
   const brandStyle = { color: "#09066f", fontWeight: "bold" };
-
   const navbarStyle = {
     backgroundImage: 'linear-gradient(70deg, #e0cee7 0%, #CC8FE9 100%)',
-    boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.3)',
-    border: 'none',
-    color: "#09066f"
+    boxShadow: '0px 2px 10px rgba(9, 6, 111, 0.4)',
+    border: 'none'    
   };
 
 
@@ -19,7 +18,9 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
         <Navbar.Brand as={Link} to="/" style={brandStyle}>
           myFlix <span style={{ fontSize: '0.7em' }}>App</span>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" style={navLinkStyle} />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="custom-toggler">
+          <span className="navbar-toggler-icon"></span> 
+        </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav" style={navLinkStyle}>
           <Nav className="me-auto">
             {!user && (

@@ -67,28 +67,7 @@ export const LoginView = ({ onLoggedIn }) => {
       
       <Button variant="primary" type="submit" className="submit-button">
         Submit
-      </Button>
-
-      {/* <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button> */}
-
+      </Button>     
     </Form>
   );
 };

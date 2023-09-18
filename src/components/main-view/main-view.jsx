@@ -14,38 +14,16 @@ export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
-  // const [selectedMovie, setSelectedMovie] = useState(null);   
-  const [movies, setMovies] = useState([]);  
-  
+  const [token, setToken] = useState(storedToken ? storedToken : null);    
+  const [movies, setMovies] = useState([]);    
   
   const onLoggedOut = () => {
     setUser(null);
     setToken(null);
     localStorage.clear();
-  };
-  
+  };  
 
-//favorites
-  // Callback function to add/remove movies from favorites
-  // const handleFavoriteClick = (movieId) => {
-  //   setMovies((prevMovies) => {
-  //     return prevMovies.map((movie) => {
-  //       if (movie._id === movieId) {
-  //         return { ...movie, isFavorite: !movie.isFavorite };
-  //       }
-  //       return movie;
-  //     });
-  //   });
-  // };
-  //   const updatedMovies = movies.map((movie) => {
-  //     if (movie._id === movieId) {
-  //       return { ...movie, isFavorite: !movie.isFavorite };
-  //     }
-  //     return movie;
-  //   });
-  //   setMovies(updatedMovies);
-  // };
+  //favorites  
   
   // let's define a function to update a user's info
   const updateUser = (user) => {
@@ -53,7 +31,6 @@ export const MainView = () => {
     localStorage.setItem('user', JSON.stringify(user));
     setUser(user);
   }
-
 
   useEffect(() => {
     if (!token) {
@@ -88,7 +65,7 @@ export const MainView = () => {
                 {user? (
                   <Navigate to="/" />
                 ) : (
-                  <Col md={5} className="d-flex align-items-center justify-content-center" style={{ height: "100vh" }}>
+                  <Col md={5} className="mt-5">
                     <div className="text-left" style={{ width: "100%" }}>
                       <p className="text-center">Don't have an account? <strong>Sign up</strong></p>
                       <SignupView />
@@ -105,7 +82,7 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to="/" />
                 ) : (
-                  <Col md={5} className="d-flex align-items-center justify-content-center" style={{ height: "100vh" }}>
+                  <Col md={5} className="mt-5" >
                     <div className="text-left" style={{ width: "100%" }}>
                       <p className="text-center"><strong>Log in</strong></p>
                       <LoginView onLoggedIn={(user, token) => {
@@ -130,7 +107,9 @@ export const MainView = () => {
                   <Col md={8} className="mt-5">                    
                     <MovieView 
                       movies={movies}
-                      user={user}                      
+                      user={user}                                 
+                      token={token} // Pass the token prop to MovieCard
+                      updateUser={updateUser} // Pass the callback function                     
                     />  
                   </Col>                 
                 )}
