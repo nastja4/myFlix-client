@@ -1,8 +1,14 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useSelector } from "react-redux";
 
 export const SignupView = () => {
+
+  // redux
+  const movies = useSelector((state) => state.movies.movies); 
+  const user = useSelector((state) => state.user.user);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");

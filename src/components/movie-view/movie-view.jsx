@@ -8,11 +8,12 @@ import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 
 
-export const MovieView = ({ /*movies,*/ user, token, updateUser }) => {  
+export const MovieView = ({ /*movies, user, */ token, updateUser }) => {  
 
   // redux
   const movies = useSelector((state) => state.movies.movies);
-
+  const user = useSelector((state) => state.user.user);
+  
 
   // favorites
   const { movieId } = useParams();
@@ -141,7 +142,7 @@ export const MovieView = ({ /*movies,*/ user, token, updateUser }) => {
 
 MovieView.propTypes = {
   // movies: PropTypes.array.isRequired,   
-  user: PropTypes.object, // Add user object
+  // user: PropTypes.object, // Add user object
   token: PropTypes.string, // Add token  
   updateUser: PropTypes.func.isRequired, 
 };
