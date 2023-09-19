@@ -22,7 +22,7 @@ export const MainView = () => {
   // const [movies, setMovies] = useState([]); // already defined for redux
   
   // redux 
-  const movies = useSelector((state) => state.movies); // ? "value"
+  const movies = useSelector((state) => state.movies.movies); // ? "value"
   const dispatch = useDispatch();
   
 
@@ -132,7 +132,7 @@ export const MainView = () => {
               <>
                 {!user ? (
                   <Navigate to="/login" replace />
-                ) : !movies || movies.length === 0 ? (
+                ) : movies.length === 0 ? (
                   <Col>The list is empty!</Col>  
                 ) : (
                   <>                    

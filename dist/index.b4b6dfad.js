@@ -27210,7 +27210,7 @@ const MainView = ()=>{
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
     // const [movies, setMovies] = useState([]); // already defined for redux
     // redux 
-    const movies = (0, _reactRedux.useSelector)((state)=>state.movies); // ? "value"
+    const movies = (0, _reactRedux.useSelector)((state)=>state.movies.movies); // ? "value"
     const dispatch = (0, _reactRedux.useDispatch)();
     const onLoggedOut = ()=>{
         setUser(null);
@@ -27354,7 +27354,7 @@ const MainView = ()=>{
                                     children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                                         to: "/login",
                                         replace: true
-                                    }, void 0, false, void 0, void 0) : !movies || movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                    }, void 0, false, void 0, void 0) : movies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                         children: "The list is empty!"
                                     }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                         children: [
@@ -47079,7 +47079,7 @@ var _s = $RefreshSig$();
 const MovieView = ({ user, token, updateUser })=>{
     _s();
     // redux
-    const movies = (0, _reactRedux.useSelector)((state)=>state.movies);
+    const movies = (0, _reactRedux.useSelector)((state)=>state.movies.movies);
     // favorites
     const { movieId } = (0, _reactRouter.useParams)();
     const movie = movies.find((b)=>b._id === movieId);
@@ -50041,11 +50041,15 @@ var _toolkit = require("@reduxjs/toolkit");
 // call createSlice, which is a function that accepts an initial state and is an object of reducer functions, a "name," and returns a slice
 const moviesSlice = (0, _toolkit.createSlice)({
     name: "movies",
-    initialState: [],
+    // initialState: [],
+    initialState: {
+        movies: [] // Initialize movies as an empty array
+    },
     reducers: {
         setMovies: (state, action)=>{
-            // state.movies = action.payload
-            return action.payload;
+            state.movies = action.payload;
+        // return action.payload;
+        // return { ...state, movies: action.payload };
         }
     }
 });

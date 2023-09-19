@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 export const MovieView = ({ /*movies,*/ user, token, updateUser }) => {  
 
   // redux
-  const movies = useSelector((state) => state.movies);
+  const movies = useSelector((state) => state.movies.movies);
 
 
   // favorites
