@@ -13,8 +13,8 @@ const MyFlixApplication = () => {
   return (
     <Provider store={store}>
       <Container>
-      <MainView />
-    </Container>
+        <MainView />
+      </Container>
     </Provider>    
   );    
 };

@@ -12,22 +12,26 @@ import { ProfileView } from "../profile-view/profile-view";
 
 import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
+import { setUser } from "../../redux/reducers/user";
 
 
 export const MainView = () => {  
-  const storedUser = JSON.parse(localStorage.getItem("user"));
+  // const storedUser = JSON.parse(localStorage.getItem("user")); // moved to user.js
   const storedToken = localStorage.getItem("token");  
   const [token, setToken] = useState(storedToken ? storedToken : null); 
-  const [user, setUser] = useState(storedUser ? storedUser : null);   
+  // const [user, setUser] = useState(storedUser ? storedUser : null);   
   // const [movies, setMovies] = useState([]); // already defined for redux
   
   // redux 
   const movies = useSelector((state) => state.movies.movies); // ? "value"
+  const user = useSelector((state) => state.user.user);
+
   const dispatch = useDispatch();
   
 
   const onLoggedOut = () => {
-    setUser(null);
+    // setUser(null);
+    dispatch(setUser(null)); // due to redux
     setToken(null);
     localStorage.clear();
   };  
@@ -39,7 +43,8 @@ export const MainView = () => {
   const updateUser = (user) => {
     // set localStorage user to overwrite the existing one
     localStorage.setItem('user', JSON.stringify(user));
-    setUser(user);
+    // setUser(user);
+    dispatch(setUser(user)); // due to redux
   }
 
   useEffect(() => {
@@ -61,7 +66,8 @@ export const MainView = () => {
     <BrowserRouter>
       <>
       <NavigationBar user={user} onLoggedOut={() => {
-        setUser(null);
+        // setUser(null); // due to redux
+        dispatch(setUser(null));
         setToken(null);
         localStorage.clear();
       }} />
@@ -72,7 +78,7 @@ export const MainView = () => {
             path="/signup"
             element={
               <>
-                {user? (
+                {user ? (
                   <Navigate to="/" />
                 ) : (
                   <Col md={5} className="mt-5">
@@ -96,7 +102,8 @@ export const MainView = () => {
                     <div className="text-left" style={{ width: "100%" }}>
                       <p className="text-center"><strong>Log in</strong></p>
                       <LoginView onLoggedIn={(user, token) => {
-                          setUser(user);
+                          // setUser(user); // due to redux
+                          dispatch(setUser(user));
                           setToken(token);
                       }} />
                     </div>
@@ -164,7 +171,7 @@ export const MainView = () => {
                     <ProfileView                  
                       user={user}
                       token={token}
-                      setUser={setUser}
+                      // setUser={setUser}
                       movies={movies} // for redux
                       onLoggedOut={onLoggedOut}
                       updateUser={updateUser} // Pass the function as a prop

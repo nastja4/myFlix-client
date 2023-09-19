@@ -5,9 +5,14 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import PropTypes from "prop-types";
 import { MovieCard } from "../movie-card/movie-card";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../../redux/reducers/user";
 
 
 export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) => {
+
+
+  
   const [userData, setUserData] = useState(user); // State to store user data
   const [loading, setLoading] = useState(true);
 
