@@ -34,6 +34,11 @@ export const MainView = () => {
     localStorage.clear();
   };  
 
+  const onLoggedIn=((user, token) => {
+    // setUser(user); // due to redux
+    dispatch(setUser(user));
+    setToken(token);
+  });
 
   //favorites  
   
@@ -98,11 +103,9 @@ export const MainView = () => {
                   <Col md={5} className="mt-5" >
                     <div className="text-left" style={{ width: "100%" }}>
                       <p className="text-center"><strong>Log in</strong></p>
-                      <LoginView onLoggedIn={(user, token) => {
-                          // setUser(user); // due to redux
-                          dispatch(setUser(user));
-                          setToken(token);
-                      }} />
+                      <LoginView 
+                        onLoggedIn={onLoggedIn} 
+                      />
                     </div>
                   </Col>
                 )}

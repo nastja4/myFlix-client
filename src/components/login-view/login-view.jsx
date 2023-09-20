@@ -39,8 +39,8 @@ export const LoginView = ({ onLoggedIn }) => {
           // After a successful login, the user object and token will be stored using localStorage
           localStorage.setItem("user", JSON.stringify(data.user));  // user instead of userMicro
           localStorage.setItem("token", data.token);
-          // onLoggedIn(data.user, data.token); // user instead of userMicro
-          dispatch(setUser(data.user, data.token));
+          onLoggedIn(data.user, data.token); // user instead of userMicro
+          // dispatch(setUser(data.user, data.token));
         } else {
           alert("No such user");
         }
