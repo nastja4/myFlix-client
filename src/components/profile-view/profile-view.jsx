@@ -5,7 +5,6 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import PropTypes from "prop-types";
 import { MovieCard } from "../movie-card/movie-card";
-import { useSelector, useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 

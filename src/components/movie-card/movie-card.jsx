@@ -82,7 +82,7 @@ export const MovieCard = ({ movie, /* user, */ token, updateUser, isProfileView 
 
         <br/>
         {/* // favorites */}
-        {/* Conditionally render the button based on isProfileView */}
+        {/* Conditionally render the button based on isProfileView. If isProfileView is on "false" (at the top), then I can't see the fav buttons in '/'  */}
         {isProfileView && (
           <div>            
             <Button 

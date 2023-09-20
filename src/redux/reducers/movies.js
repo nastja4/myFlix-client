@@ -5,18 +5,20 @@ const moviesSlice = createSlice({
   name: "movies",
   // initialState: [],
   initialState: {
-    movies: [] // Initialize movies as an empty array
+    movies: [], // Initialize movies as an empty array
+    filter: ""
   },
   reducers: {
     setMovies: (state, action) => {
-      state.movies = action.payload
-      // return action.payload;
-      // return { ...state, movies: action.payload };
+      state.movies = action.payload; // return action.payload; // return { ...state, movies: action.payload };
+    },
+    setFilter: (state, action) => {
+      state.filter = action.payload;
     }
   }
 });
 
 
-export const { setMovies } = moviesSlice.actions;
+export const { setMovies, setFilter } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

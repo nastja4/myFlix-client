@@ -4,7 +4,6 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
@@ -13,6 +12,7 @@ import { ProfileView } from "../profile-view/profile-view";
 import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies";
 import { setUser } from "../../redux/reducers/user";
+import { MoviesList } from "../movies-list/movies-list";
 
 
 export const MainView = () => {  
@@ -25,8 +25,7 @@ export const MainView = () => {
   // redux 
   const movies = useSelector((state) => state.movies.movies); // ? "value"
   const user = useSelector((state) => state.user.user);
-  const dispatch = useDispatch();
-  
+  const dispatch = useDispatch();  
 
   const onLoggedOut = () => {
     // setUser(null);
@@ -70,6 +69,7 @@ export const MainView = () => {
         setToken(null);
         localStorage.clear();
       }} />
+      <br/>
 
       <Row className="justify-content-md-center">
         <Routes>
@@ -122,7 +122,7 @@ export const MainView = () => {
                 ) : (
                   <Col md={8} className="mt-5">                    
                     <MovieView 
-                      // movies={movies}  // commented for redux
+                      // movies={movies}  // due to redux
                       // user={user}                                 
                       token={token} // Pass the token prop to MovieCard
                       updateUser={updateUser} // Pass the callback function                     
@@ -136,7 +136,9 @@ export const MainView = () => {
             path="/"
             element={
               <>
-                {!user ? (
+                {!user ? <Navigate to="/login" replace /> : <MoviesList /> }                
+                
+                {/* {!user ? (
                   <Navigate to="/login" replace />
                 ) : movies.length === 0 ? (
                   <Col>The list is empty!</Col>  
@@ -153,12 +155,11 @@ export const MainView = () => {
                         />
                       </Col>                                  
                     ))}          
-                  </>      
-                )}
+                  </>  
+                )} */}
               </>
             }
           />
-
           <Route
             path="/profile"
             element={
