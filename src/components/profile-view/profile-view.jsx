@@ -253,7 +253,7 @@ export const ProfileView = ({ token, onLoggedOut, /* movies, user,*/ updateUser 
 
 ProfileView.propTypes = {
   // user: PropTypes.object.isRequired,
-  token: PropTypes.string.isRequired,
+  token: PropTypes.string,
   onLoggedOut: PropTypes.func.isRequired,
   // movies: PropTypes.array.isRequired,  
 };
