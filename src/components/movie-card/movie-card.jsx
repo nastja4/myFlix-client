@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
+export const MovieCard = ({ movie, /* user, */ token, updateUser, isProfileView = true }) => {
 
-export const MovieCard = ({ movie, user, token, updateUser, isProfileView = true }) => {
+  // redux 
+  const user = useSelector((state) => state.user.user);
 
   // favorites
   const [isFavorite, setIsFavorite] = useState(false);   
@@ -79,7 +82,7 @@ export const MovieCard = ({ movie, user, token, updateUser, isProfileView = true
 
         <br/>
         {/* // favorites */}
-        {/* Conditionally render the button based on isProfileView */}
+        {/* Conditionally render the button based on isProfileView. If isProfileView is on "false" (at the top), then I can't see the fav buttons in '/'  */}
         {isProfileView && (
           <div>            
             <Button 
@@ -126,7 +129,7 @@ MovieCard.propTypes = {
     // favorites
     isFavorite: PropTypes.bool, // Add isFavorite property
   }).isRequired,
-  user: PropTypes.object, // Add user object
+  // user: PropTypes.object, // Add user object
   token: PropTypes.string, // Add token  
 };
 

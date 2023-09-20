@@ -13256,4 +13256,8 @@ body {
   color: #09066f;
 }
 
+.custom-placeholder::placeholder {
+  color: #09066fb3;
+}
+
 /*# sourceMappingURL=index.5f1df611.css.map */

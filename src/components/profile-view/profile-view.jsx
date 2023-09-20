@@ -5,9 +5,15 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import PropTypes from "prop-types";
 import { MovieCard } from "../movie-card/movie-card";
+import { useSelector } from "react-redux";
 
 
-export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) => {
+export const ProfileView = ({ token, onLoggedOut, /* movies, user,*/ updateUser }) => {
+
+  // redux
+  const movies = useSelector((state) => state.movies.movies); 
+  const user = useSelector((state) => state.user.user);
+  
   const [userData, setUserData] = useState(user); // State to store user data
   const [loading, setLoading] = useState(true);
 
@@ -246,10 +252,10 @@ export const ProfileView = ({ user, token, onLoggedOut, movies, updateUser }) =>
 
 
 ProfileView.propTypes = {
-  user: PropTypes.object.isRequired,
+  // user: PropTypes.object.isRequired,
   token: PropTypes.string.isRequired,
   onLoggedOut: PropTypes.func.isRequired,
-  movies: PropTypes.array.isRequired,  
+  // movies: PropTypes.array.isRequired,  
 };
 
 

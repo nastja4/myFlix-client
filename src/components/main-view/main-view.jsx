@@ -4,24 +4,36 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 
+import { useSelector, useDispatch } from "react-redux";
+import { setMovies } from "../../redux/reducers/movies";
+import { setUser } from "../../redux/reducers/user";
+import { MoviesList } from "../movies-list/movies-list";
+
+
 export const MainView = () => {  
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);    
-  const [movies, setMovies] = useState([]);    
+  // const storedUser = JSON.parse(localStorage.getItem("user")); // moved to user.js
+  const storedToken = localStorage.getItem("token");  
+  const [token, setToken] = useState(storedToken ? storedToken : null); 
+  // const [user, setUser] = useState(storedUser ? storedUser : null);   
+  // const [movies, setMovies] = useState([]); // already defined for redux
   
+  // redux 
+  const movies = useSelector((state) => state.movies.movies); // ? "value"
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();  
+
   const onLoggedOut = () => {
-    setUser(null);
+    // setUser(null);
+    dispatch(setUser(null)); // due to redux
     setToken(null);
     localStorage.clear();
   };  
+
 
   //favorites  
   
@@ -29,32 +41,35 @@ export const MainView = () => {
   const updateUser = (user) => {
     // set localStorage user to overwrite the existing one
     localStorage.setItem('user', JSON.stringify(user));
-    setUser(user);
+    // setUser(user);
+    dispatch(setUser(user)); // due to redux
   }
 
   useEffect(() => {
     if (!token) {
       return;
     }
-
     fetch("https://movies-my-flix-307c49ee24e7.herokuapp.com/movies", {
       headers: {Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
       .then((data) => { 
-        setMovies(data); 
+        // setMovies(data); 
+        dispatch(setMovies(data)); // for redux
       });
-  }, [token]);      
+  }, [token]);        
       
   
   return (
     <BrowserRouter>
       <>
-      <NavigationBar user={user} onLoggedOut={() => {
-        setUser(null);
+      <NavigationBar /* user={user} */ onLoggedOut={() => {
+        // setUser(null); // due to redux
+        dispatch(setUser(null));
         setToken(null);
         localStorage.clear();
       }} />
+      <br/>
 
       <Row className="justify-content-md-center">
         <Routes>
@@ -62,7 +77,7 @@ export const MainView = () => {
             path="/signup"
             element={
               <>
-                {user? (
+                {user ? (
                   <Navigate to="/" />
                 ) : (
                   <Col md={5} className="mt-5">
@@ -86,7 +101,8 @@ export const MainView = () => {
                     <div className="text-left" style={{ width: "100%" }}>
                       <p className="text-center"><strong>Log in</strong></p>
                       <LoginView onLoggedIn={(user, token) => {
-                          setUser(user);
+                          // setUser(user); // due to redux
+                          dispatch(setUser(user));
                           setToken(token);
                       }} />
                     </div>
@@ -106,8 +122,8 @@ export const MainView = () => {
                 ) : (
                   <Col md={8} className="mt-5">                    
                     <MovieView 
-                      movies={movies}
-                      user={user}                                 
+                      // movies={movies}  // due to redux
+                      // user={user}                                 
                       token={token} // Pass the token prop to MovieCard
                       updateUser={updateUser} // Pass the callback function                     
                     />  
@@ -120,7 +136,9 @@ export const MainView = () => {
             path="/"
             element={
               <>
-                {!user ? (
+                {!user ? <Navigate to="/login" replace /> : <MoviesList /> }                
+                
+                {/* {!user ? (
                   <Navigate to="/login" replace />
                 ) : movies.length === 0 ? (
                   <Col>The list is empty!</Col>  
@@ -131,18 +149,17 @@ export const MainView = () => {
                       <Col className="mb-5" key={movie._id} xs={6} md={4} lg={3} xl={2}>
                         <MovieCard style={{ color: '#09066f' }}               
                           movie={movie} 
-                          user={user}
+                          // user={user}
                           token={token} // Pass the token prop to MovieCard
                           updateUser={updateUser} // Pass the callback function
                         />
                       </Col>                                  
                     ))}          
-                  </>      
-                )}
+                  </>  
+                )} */}
               </>
             }
           />
-
           <Route
             path="/profile"
             element={
@@ -152,10 +169,10 @@ export const MainView = () => {
                 ) : (
                   <Col md={12} >
                     <ProfileView                  
-                      user={user}
+                      // user={user}
                       token={token}
-                      setUser={setUser}
-                      movies={movies} 
+                      // setUser={setUser} // due to redux
+                      // movies={movies} // for redux
                       onLoggedOut={onLoggedOut}
                       updateUser={updateUser} // Pass the function as a prop
                     />

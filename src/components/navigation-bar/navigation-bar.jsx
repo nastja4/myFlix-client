@@ -1,7 +1,14 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../../redux/reducers/user";
+import { useSelector } from "react-redux";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ /* user, */ onLoggedOut }) => {
+
+  // redux
+  const movies = useSelector((state) => state.movies.movies); 
+  const user = useSelector((state) => state.user.user);
   
   const navLinkStyle = { color: "#09066f" };
   const brandStyle = { color: "#09066f", fontWeight: "bold" };

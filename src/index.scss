@@ -81,3 +81,8 @@ body {
 .btn.btn-primary {
   color: #09066f;
 }
+
+.custom-placeholder::placeholder {
+  color: rgba(9, 6, 111, 0.7); 
+}
+
