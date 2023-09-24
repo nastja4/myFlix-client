@@ -1,6 +1,8 @@
 $color: steelblue;
-$primary: /*rgb(204, 143, 233);*/ #CC8FE9;
-$body-bg: #4086E2;
+$primary: /*rgb(204, 143, 233);*/ #CD96E9;
+//  #CC8FE9;
+$body-bg: #7FAEEB;
+//  #4086E2;
 
 // @import '~bootstrap/scss/bootstrap.scss';
 @import '../node_modules/bootstrap/scss/bootstrap';
@@ -58,12 +60,12 @@ body {
 }
 
 .open-button {  
-  border: 2px solid #CC8FE9;
+  border: 2px solid #CD96E9;
 }
 
 .open-button:hover {  
-  background: #CC8FE9;  
-  border: 2px solid #CC8FE9;
+  background: #CD96E9;  
+  border: 2px solid #CD96E9;
 }
 
 .custom-toggler .navbar-toggler-icon {
