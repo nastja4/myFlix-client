@@ -2,6 +2,22 @@
 
 Welcome to the myFlix React app project! This is a client-side application built to complement the existing server-side code (REST API and database) of the myFlix movie app. The project is a part of the Achievement 3 task, focusing on full-stack JavaScript development using the MERN (MongoDB, Express, React, Node.js) stack.
 
+Link: https://movie-myflix.netlify.app/
+
+Screenshorts:
+- Home page:
+![Screenshot N1 (1)](https://github.com/nastja4/myFlix-client/assets/126527606/a34b276f-4191-4c5e-b7aa-9584f5b2021d)
+![Screenshot N2 (2)](https://github.com/nastja4/myFlix-client/assets/126527606/15b3b0fe-6a32-44a4-825d-e98092cfc161)
+
+- Profile view:
+![Screenshot N3](https://github.com/nastja4/myFlix-client/assets/126527606/20b379e6-38a4-49d3-a30c-a297f326922b)
+![Screenshot N4](https://github.com/nastja4/myFlix-client/assets/126527606/a76dd7f7-fccc-4233-ae53-38d3c8607deb)
+
+- Movie card:
+![Screenshot N5](https://github.com/nastja4/myFlix-client/assets/126527606/f63907a0-98b6-443f-b7f8-96e9900eb43a)
+![Screenshot N6](https://github.com/nastja4/myFlix-client/assets/126527606/36912100-68d1-48dd-849d-0d4446cfa7d4)
+![Screenshot N7](https://github.com/nastja4/myFlix-client/assets/126527606/93a2e7fe-5baa-4d0a-a366-06782ce83cfa)
+
 ## Project Objective
 
 The primary goal of this project is to develop a single-page, responsive web app using React that allows users to access information about movies, create profiles, and interact with the server-side via REST API endpoints. The app aims to provide a rich user experience through various interface views and features, facilitating interactions with the myFlix server-side.
