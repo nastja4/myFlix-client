@@ -1,6 +1,6 @@
 # myFlix React App
 
-Welcome to the myFlix React app project! This is a client-side application built to complement the existing server-side code (REST API and database) of the myFlix movie app. The project is a part of the Achievement 3 task, focusing on full-stack JavaScript development using the MERN (MongoDB, Express, React, Node.js) stack.
+Welcome to the myFlix React app project! This is a client-side application built to complement the existing server-side code (REST API and database) of the myFlix movie app. The project is a part of the web application, focusing on full-stack JavaScript development using the MERN (MongoDB, Express, React, Node.js) stack.
 
 Link: https://movie-myflix.netlify.app/
 
