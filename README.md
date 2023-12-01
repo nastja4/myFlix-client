@@ -1,6 +1,6 @@
 # myFlix React App
 
-Welcome to the myFlix React app project! This is a client-side application built to complement the existing server-side code (REST API and database) of the myFlix movie app. The project is a part of the web application, focusing on full-stack JavaScript development using the MERN (MongoDB, Express, React, Node.js) stack.
+Welcome to the myFlix React app project! This is a movie app that allows users to access information about movies, create profiles, and save their favorite movies. This project includes both the client-side and server-side development, showcasing mastery of full-stack JavaScript technologies within the MERN stack (MongoDB, Express, React, and Node.js).
 
 Link: https://movie-myflix.netlify.app/
 
