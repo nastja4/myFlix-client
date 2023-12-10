@@ -77,4 +77,4 @@ This project was created as part of Anastasia Fazius's achievements in full-stac
 
 ---
 
-Have fun exploring movies with the myFlix React app! If you have any questions or feedback, please feel free to reach out to [ Contact Information].
+Have fun exploring movies with the myFlix React app! If you have any questions or feedback, please feel free to reach out to [anastasia.fazius@gmail.com].
